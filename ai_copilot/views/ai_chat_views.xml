@@ -1,0 +1,49 @@
+<odoo>
+    <record id="view_ai_copilot_chat_tree" model="ir.ui.view">
+        <field name="name">ai.copilot.chat.tree</field>
+        <field name="model">ai.copilot.chat</field>
+        <field name="arch" type="xml">
+            <tree string="AI Copilot Chats">
+                <field name="user_message"/>
+                <field name="ai_response"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ai_copilot_chat_form" model="ir.ui.view">
+        <field name="name">ai.copilot.chat.form</field>
+        <field name="model">ai.copilot.chat</field>
+        <field name="arch" type="xml">
+            <form string="AI Copilot Chat">
+                <header>
+                    <button name="action_send_message"
+                            type="object"
+                            string="Send to AI"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="user_message"/>
+                        <field name="ai_response" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ai_copilot_chat" model="ir.actions.act_window">
+        <field name="name">AI Copilot Chats</field>
+        <field name="res_model">ai.copilot.chat</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_ai_copilot_root"
+              name="AI Copilot"
+              sequence="10"/>
+
+    <menuitem id="menu_ai_copilot_chat"
+              name="Chats"
+              parent="menu_ai_copilot_root"
+              action="action_ai_copilot_chat"
+              sequence="10"/>
+</odoo>

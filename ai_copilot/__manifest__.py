@@ -7,7 +7,7 @@
     'depends': ['web'],
     'data': [
         'security/ir.model.access.csv',
-        # 'views/calculator_views.xml',
+        'views/ai_chat_views.xml',
         
     ],
     

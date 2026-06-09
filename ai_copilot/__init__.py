@@ -1,2 +1,2 @@
-from .ai_copilot import models
-from .ai_copilot import controllers
+from . import models
+from . import controllers

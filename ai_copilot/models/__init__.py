@@ -1,1 +1,1 @@
-from ...models import ai_chat
+from . import ai_chat
