@@ -17,15 +17,17 @@ def  home():
 
 @app.post("/chat")
 def chat(request: ChatRequest):
-    user_message = request.message
+    user_message = request.message.lower()
 
-    if "customer" in user_message:
+    if any(keyword in user_message for keyword in ("customer", "customers", "customer_details")):
         return {
-            "response":"you really want to know about the customer . in next message i send you customer details"
+            "intent": "customer_list",
+            "message":"customer data want to  see"
         }
-    elif "product" in user_message:
+    elif any(keyword in user_message for keyword in ("product", "products", "product_details")):
         return {
-         "response":"you really want to know about the product details data. in next contact i send you details about those products"
+            "intent": "product_list",
+            "message":"prodict data want to  see"
         }
     elif "invoice" in user_message:
         return {
@@ -41,7 +43,6 @@ def chat(request: ChatRequest):
         return {
             "response": "I received your message, but I do not understand the ERP command yet."
         }
+    
 
-    return {
-        "response": f"FastAPI received your message: {user_message}"
-    }
+  
