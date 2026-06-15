@@ -19,7 +19,11 @@ def  home():
 def chat(request: ChatRequest):
     user_message = request.message.lower()
 
-    if "customer_count" in user_message:
+    if (
+        "customer_count" in user_message
+        or "customer count" in user_message
+        or ("count" in user_message and "customer" in user_message)
+    ):
         return{
             "intent": "customer_count",
             "message": "user wants customer count"
@@ -30,7 +34,11 @@ def chat(request: ChatRequest):
             "message":"customer data want to  see"
         }
 
-    elif "product_count" in user_message:
+    elif (
+        "product_count" in user_message
+        or "product count" in user_message
+        or ("count" in user_message and "product" in user_message)
+    ):
         return{
             "intent": "product_count",
             "message": "user wants product count"
@@ -40,20 +48,39 @@ def chat(request: ChatRequest):
             "intent": "product_list",
             "message":"prodict data want to  see"
         }
-    elif "invoice_count" in user_message:
+    elif (
+        "invoice_count" in user_message
+        or "invoice count" in user_message
+        or ("count" in user_message and "invoice" in user_message)
+    ):
         return{
             "intent": "invoice_count",
             "message": "user wants invoice count"
         }
     elif "invoice" in user_message:
         return {
-            "response": "You asked for invoice information. Next we will connect this to Odoo invoices."
+            "intent": "invoice_list",
+            "message": "user wants invoice list"
         }
 
-    elif "sale_count" in user_message:
+    elif (
+        "sale_count" in user_message
+        or "sale count" in user_message
+        or "sales count" in user_message
+        or ("count" in user_message and ("sale" in user_message or "sales" in user_message))
+    ):
         return{
             "intent": "sale_count",
             "message": "user wants sale count"
+        }
+    elif (
+        "quotation_count" in user_message
+        or "quotation count" in user_message
+        or ("count" in user_message and "quotation" in user_message)
+    ):
+        return{
+            "intent": "quotation_count",
+            "message": "user wants quotation count"
         }
     elif "sale" in user_message or "sales" in user_message:
         return {
