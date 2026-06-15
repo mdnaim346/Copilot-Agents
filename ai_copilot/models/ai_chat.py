@@ -25,6 +25,9 @@ class AIChat(models.Model):
                 customers = Partner.search(domain, limit=10)
                 customer_names="\n".join(customers.mapped("name"))
                 record.ai_response= f"some related customers are :\n{customer_names}"
+            elif data.get("intent") =="customer_count":
+                Partners=self.env["res.partner"].sudo().search([])
+                record.ai_response=f"we have total {len(Partners)} customers"
             else:
                 record.ai_response=data.get("message") or data.get("response") or "I received your message."
 
